@@ -1,25 +1,18 @@
-import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
-
-const AWS = require("aws-sdk");
-
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-
-const { S3, UploadPartCommand } = require("@aws-sdk/client-s3");
+import { NextResponse } from "next/server";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { S3, UploadPartCommand } from "@aws-sdk/client-s3";
 
 const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 const AWS_REGION = process.env.AWS_REGION;
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
-const s3Credentials = new AWS.Credentials({
-  accessKeyId: AWS_ACCESS_KEY,
-  secretAccessKey: AWS_SECRET_KEY,
-});
-
 const s3 = new S3({
   region: AWS_REGION,
-  credentials: s3Credentials,
+  credentials: {
+    accessKeyId: AWS_ACCESS_KEY,
+    secretAccessKey: AWS_SECRET_KEY,
+  },
 });
 
 export async function POST(req) {

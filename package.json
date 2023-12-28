@@ -11,7 +11,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.481.0",
     "@aws-sdk/s3-request-presigner": "^3.481.0",
-    "aws-sdk": "^2.1526.0",
     "axios": "^1.6.3",
     "lodash": "^4.17.21",
     "next": "14.0.4",
